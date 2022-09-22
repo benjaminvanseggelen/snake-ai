@@ -2,6 +2,7 @@ import random
 from enum import Enum
 from board import Board
 from generic import Space
+from ai import AI
 
 
 class Direction(Enum):
@@ -34,6 +35,7 @@ class Snake:
         self.tailPieces: list[TailPiece] = [
             TailPiece(self.x - 1, self.y), TailPiece(self.x - 2, self.y)]
         self.alive = True
+        self.path: list[Space] = []
 
     def setDirection(self, direction: Direction):
         if abs(self.moved_direction.value - direction.value) != 2:
@@ -71,3 +73,16 @@ class Snake:
             self.tailPieces.append(potential_growth)
 
         self.moved_direction = self.direction
+
+    def take_action(self):
+        next_tile = AI.search(self.board.w, self.board.h, self.x, self.y,
+                              self.board.apples[0].x, self.board.apples[0].y, self.tailPieces)
+
+        if next_tile.x > self.x:
+            self.setDirection(Direction.RIGHT)
+        if next_tile.x < self.x:
+            self.setDirection(Direction.LEFT)
+        if next_tile.y > self.y:
+            self.setDirection(Direction.DOWN)
+        if next_tile.y < self.y:
+            self.setDirection(Direction.UP)

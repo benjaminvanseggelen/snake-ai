@@ -3,8 +3,8 @@ from snake import Snake, Direction
 import sys
 import pygame
 
-WIDTH = 20
-HEIGHT = 20
+WIDTH = 10
+HEIGHT = 10
 TILE_SIZE = 64
 BORDER_WIDTH = 4
 
@@ -12,7 +12,7 @@ SNAKE_COLOR = 0, 150, 0
 APPLE_COLOR = 200, 0, 0
 BACKGROUND = 25, 25, 25
 
-INTERVAL = 300
+INTERVAL = 100
 
 if __name__ == "__main__":
     board = Board(WIDTH, HEIGHT)
@@ -48,6 +48,7 @@ if __name__ == "__main__":
                     case pygame.K_DOWN:
                         snake.setDirection(Direction.DOWN)
 
+        snake.take_action()
         snake.move()
 
         screen.fill(BACKGROUND)
