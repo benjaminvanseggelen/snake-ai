@@ -1,20 +1,28 @@
+#!/usr/bin/env python3
+
 from board import Board
 from snake import Snake, Direction
 import sys
 import pygame
-
-WIDTH = 10
-HEIGHT = 10
-TILE_SIZE = 64
-BORDER_WIDTH = 4
+import argparse
 
 SNAKE_COLOR = 0, 150, 0
 APPLE_COLOR = 200, 0, 0
 BACKGROUND = 25, 25, 25
 
-INTERVAL = 100
-
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--size', help='Width of the field', type=int, default=10)
+    parser.add_argument('--tile_size', help='Pixel size of tiles', type=int, default = 64)
+    parser.add_argument('--interval', help='Interval between game update (ms)', type=int, default=100)
+
+    args = parser.parse_args()
+
+    WIDTH = HEIGHT = args.size
+    TILE_SIZE = args.tile_size
+    BORDER_WIDTH = TILE_SIZE // 16
+    INTERVAL = args.interval
+
     board = Board(WIDTH, HEIGHT)
     snake = Snake(board)
 
@@ -37,7 +45,7 @@ if __name__ == "__main__":
                 sys.exit()
             elif event.type == pygame.KEYDOWN:
                 match event.key:
-                    case pygame.QUIT:
+                    case pygame.K_ESCAPE:
                         sys.exit()
                     case pygame.K_RIGHT:
                         snake.setDirection(Direction.RIGHT)
