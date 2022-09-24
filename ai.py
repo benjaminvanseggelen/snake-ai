@@ -1,5 +1,3 @@
-from distutils.dir_util import copy_tree
-from fileinput import close
 from generic import Space
 
 
