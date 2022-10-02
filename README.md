@@ -4,6 +4,8 @@ Simple Python implementation of the popular game of Snake.
 
 **But why play it yourself, if your computer can do it for you?**
 
+Since the AI is based on A* search, it does not achieve good results currently.
+
 ## Usage
 
 ### Linux
@@ -15,7 +17,7 @@ Simple Python implementation of the popular game of Snake.
 - Run `./main.py`
 
 ### Windows
-- Optional: if prefer to use a virtual environment, create one and source it
+- Optional: if you prefer to use a virtual environment, create one and source it
 - Run `pip install -r requirements.txt`
 - Run the file `main.py` with your python interpreter
 
